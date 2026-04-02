@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContainerByggaren"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1400" Height="788" Background="{DynamicResource BackgroundBrush}">
+        Title="ContainerByggaren" Width="1400" Height="788" Background="{DynamicResource BackgroundBrush}">
 
     <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
         <Grid Width="1400" Height="788"  Background="{DynamicResource BackgroundBrush}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
                 <!-- Title -->
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
                 <!-- Main -->
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
-                <!-- Footer -->
+                <RowDefinition Height="10"/>
+
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"/>
@@ -29,16 +30,42 @@
             </Grid.ColumnDefinitions>
             
             <!-- Title -->
-            <Label Grid.Row="0" Grid.Column="1" Content="ContainerByggaren" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"
+            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="ContainerByggaren" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"
                 Background="{DynamicResource BackgroundBrush }" HorizontalAlignment="Center" Margin="0,10"/>
             
             <!-- Articles -->
-            <DataGrid Grid.Row="1" Grid.Column="1" Margin="10" AutoGenerateColumns="True" HeadersVisibility="Column"
+            <DataGrid Grid.Row="2" Grid.Column="1" Margin="0,0,10,0" AutoGenerateColumns="True" HeadersVisibility="Column" Height="600" VerticalAlignment="Top"
                 Background="{DynamicResource PanelBrush}" Foreground="{DynamicResource TextBrush}" BorderBrush="{DynamicResource BorderBrush}"/>
             
             <!-- Simulation settings -->
-            
+            <Grid Grid.Row="3" Grid.Column="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
 
+                <!-- Row 1 -->
+                <Label Grid.Row="0" Grid.Column="0" Content="Simuleringstyp:" FontSize="18" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" Width="180" Height="30" FontSize="18" SelectedIndex="0">
+                    <ComboBoxItem Content="Segmenterat"/>
+                    <ComboBoxItem Content="Icke segmenterat"/>
+                </ComboBox>
+
+                <!-- Row 2 -->
+                <Label Grid.Row="1" Grid.Column="0" Content="Leveransregel:" FontSize="18" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" Width="180" Height="30" FontSize="18" SelectedIndex="0">
+                    <ComboBoxItem Content="Ingen förleverans"/>
+                    <ComboBoxItem Content="Förleverera"/>
+                </ComboBox>
+
+            </Grid>
+            
+            <!-- Tågavgångarna -->
+            
 
         </Grid>
     </Viewbox>
