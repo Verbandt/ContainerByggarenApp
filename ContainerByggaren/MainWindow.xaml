@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContainerByggaren"
         mc:Ignorable="d"
-        Title="ContainerByggaren" Width="1400" Height="788" Background="{DynamicResource BackgroundBrush}">
+        Title="ContainerByggaren" Width="1600" Height="900" Background="{DynamicResource BackgroundBrush}">
 
-    <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
-        <Grid Width="1400" Height="788"  Background="{DynamicResource BackgroundBrush}">
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
+        <Grid Width="1650" Height="900"  Background="{DynamicResource BackgroundBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>
                 <!-- Title -->
@@ -29,42 +29,60 @@
                 <!-- Right -->
             </Grid.ColumnDefinitions>
             
-            <!-- Title -->
+            <!-- Header -->
             <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="ContainerByggaren" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"
                 Background="{DynamicResource BackgroundBrush }" HorizontalAlignment="Center" Margin="0,10"/>
+            <Button Grid.Row="1" Grid.Column="1" x:Name="ThemeButton" Content="🌙" Click="ToggleTheme_Click" Width="30" Height="30" FontSize="18" Background="Transparent" 
+                Foreground="{DynamicResource TextBrush}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             
             <!-- Articles -->
-            <DataGrid Grid.Row="2" Grid.Column="1" Margin="0,0,10,0" AutoGenerateColumns="True" HeadersVisibility="Column" Height="600" VerticalAlignment="Top"
-                Background="{DynamicResource PanelBrush}" Foreground="{DynamicResource TextBrush}" BorderBrush="{DynamicResource BorderBrush}"/>
+            <DataGrid Grid.Row="2" Grid.Column="1" Margin="0,0,0,0" AutoGenerateColumns="False" HeadersVisibility="Column" Height="680" MaxWidth="380" VerticalAlignment="Top"
+                Background="{DynamicResource PanelBrush}" Foreground="Black" BorderBrush="{DynamicResource BorderBrush}"
+                GridLinesVisibility="All" AlternatingRowBackground="{DynamicResource DatagridAltBg}" FontSize="16">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Artikelnummer" Binding="{Binding Artikelnummer}" Width="185"/>
+                    <DataGridTextColumn Header="PRESAM" Binding="{Binding Presam}" Width="75"/>
+                    <DataGridTextColumn Header="Behov/avgång" Binding="{Binding Behov}" Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
             
+
             <!-- Simulation settings -->
-            <Grid Grid.Row="3" Grid.Column="1" Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="200"/>
-                </Grid.ColumnDefinitions>
+            <Border Grid.Row="3" Grid.Column="1" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Padding="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- Row 1 -->
-                <Label Grid.Row="0" Grid.Column="0" Content="Simuleringstyp:" FontSize="18" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,10,5"/>
-                <ComboBox Grid.Row="0" Grid.Column="1" Width="180" Height="30" FontSize="18" SelectedIndex="0">
-                    <ComboBoxItem Content="Segmenterat"/>
-                    <ComboBoxItem Content="Icke segmenterat"/>
-                </ComboBox>
+                    <!-- Row 1 -->
+                    <Button Grid.Row="0" Grid.Column="0" Content="Importera Artiklar" Width="160" Height="30" FontSize="18" Background="{DynamicResource PanelBrush}" Foreground="{DynamicResource TextBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,10,10"/>
+                    
+                    <!-- Row 2 -->
+                    <Label Grid.Row="1" Grid.Column="0" Content="Simuleringstyp:" FontSize="18" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center"
+                           Margin="0,0,10,5"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" Width="180" Height="30" FontSize="18" SelectedIndex="0">
+                        <ComboBoxItem Content="Segmenterat"/>
+                        <ComboBoxItem Content="Icke segmenterat"/>
+                    </ComboBox>
 
-                <!-- Row 2 -->
-                <Label Grid.Row="1" Grid.Column="0" Content="Leveransregel:" FontSize="18" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,10,5"/>
-                <ComboBox Grid.Row="1" Grid.Column="1" Width="180" Height="30" FontSize="18" SelectedIndex="0">
-                    <ComboBoxItem Content="Ingen förleverans"/>
-                    <ComboBoxItem Content="Förleverera"/>
-                </ComboBox>
+                    <!-- Row 3 -->
+                    <Label Grid.Row="2" Grid.Column="0" Content="Leveransregel:" FontSize="18" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" Width="180" Height="30" FontSize="18" SelectedIndex="0">
+                        <ComboBoxItem Content="Ingen förleverans"/>
+                        <ComboBoxItem Content="Förleverera"/>
+                    </ComboBox>
+                </Grid>
+            </Border>
 
-            </Grid>
-            
-            <!-- Tågavgångarna -->
+            <!-- Train departures -->
             
 
         </Grid>
