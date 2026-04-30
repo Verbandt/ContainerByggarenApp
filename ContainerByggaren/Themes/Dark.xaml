@@ -16,5 +16,5 @@
     <!-- Text -->
     <SolidColorBrush x:Key="TextBrush" Color="White"/>
     <SolidColorBrush x:Key="DatagridCells" Color="#4CB54C"/>
-
+    
 </ResourceDictionary>

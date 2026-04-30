@@ -9,6 +9,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ContainerByggaren.ViewModels;
+using ContainerByggaren.Services;
 
 namespace ContainerByggaren
 {
@@ -21,6 +23,8 @@ namespace ContainerByggaren
         {
             InitializeComponent();
             SourceInitialized += MainWindow_SourceInitialized;
+
+            DataContext = new MainviewModel(new WindowService());
         }
 
         private void ToggleTheme_Click(object sender, RoutedEventArgs e)
@@ -122,5 +126,6 @@ namespace ContainerByggaren
             public int Right;
             public int Bottom;
         }
+
     }
 }

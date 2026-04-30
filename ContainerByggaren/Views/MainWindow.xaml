@@ -125,8 +125,9 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Row 1 -->
-                    <Button Grid.Row="0" Grid.Column="0" x:Name="DeparturesDetails" Content="Avgångs detaljer" FontSize="20" Margin="0,5,22,10"
-                        Background="{DynamicResource PanelBrush}" Foreground="{DynamicResource TextBrush}" Width="160" HorizontalAlignment="Center"/>
+                    <Button Grid.Row="0" Grid.Column="0" x:Name="DeparturesDetails" Content="Avgångs detaljer" FontSize="20" Margin="0,5,22,10" 
+                            Command="{Binding DepartureDetailsCommand}" Background="{DynamicResource PanelBrush}" Foreground="{DynamicResource TextBrush}" Width="160"
+                            HorizontalAlignment="Center"/>
                     
                     <!-- Row 2 -->
                     <Label Grid.Row="1" Grid.Column="0" Content="Snitt fyllnadsgraden:" FontSize="18" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" 
