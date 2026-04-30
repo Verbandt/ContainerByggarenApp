@@ -23,6 +23,7 @@ namespace ContainerByggaren
         {
             InitializeComponent();
             SourceInitialized += MainWindow_SourceInitialized;
+            EnsureTrainColumns(15);
 
             DataContext = new MainviewModel(new WindowService());
         }
@@ -127,5 +128,48 @@ namespace ContainerByggaren
             public int Bottom;
         }
 
+        private void CustomerChoiceBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DeparturesDataGrid == null)
+                return;
+
+            var comboBox = sender as ComboBox;
+            var selectedCustomer = comboBox?.SelectedItem as ComboBoxItem;
+            var selectedCustomerContent = selectedCustomer?.Content as string;
+
+            if (selectedCustomerContent == "Torslanda")
+            {
+                EnsureTrainColumns(15);
+            }
+            else if (selectedCustomerContent == "Gent")
+            {
+                EnsureTrainColumns(12);
+            }
+        }
+
+        private void EnsureTrainColumns(int trainCount)
+        {
+            //Remove all current train columns
+            for (int i = DeparturesDataGrid.Columns.Count - 1; i >= 0; i--)
+            {
+                var column = DeparturesDataGrid.Columns[i];
+                if (column.Header.ToString().StartsWith("Tåg"))
+                {
+                    DeparturesDataGrid.Columns.RemoveAt(i);
+                }
+
+                //Adds new columns based on customer choice
+                for (int j = 1; j <= trainCount; j++)
+                {
+                    var trainColumn = new DataGridTextColumn
+                    {
+                        Header = $"Tåg {j}",
+                        Binding = new Binding($"Train{j}")
+                    };
+                    DeparturesDataGrid.Columns.Add(trainColumn);
+                }
+
+            }
+        }
     }
 }

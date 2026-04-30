@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContainerByggaren.Views"
         mc:Ignorable="d"
-        Title="DeparturesDetailsWindow" Height="450" Width="800" Background="{DynamicResource BackgroundBrush}">
+        Title="Avgångs information" Height="450" Width="800" Background="{DynamicResource BackgroundBrush}">
     <Grid>
-        
+        <DataGrid Grid.Row="0" Margin="10,10,10,10" AutoGenerateColumns="False" HeadersVisibility="Column" MinHeight="390" Width="220" VerticalAlignment="Top"
+            Background="{DynamicResource PanelBrush}" Foreground="Black" BorderBrush="{DynamicResource BorderBrush}" CanUserAddRows="False" CanUserResizeColumns="False"
+            CanUserReorderColumns="False" GridLinesVisibility="All" AlternatingRowBackground="{DynamicResource DatagridAltBg}" FontSize="16" HorizontalAlignment="Left">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tåg" Binding="{Binding }" Width="Auto"/>
+                <DataGridTextColumn Header="Fyllnadsgrad" Binding="{Binding }" Width="Auto"/>
+                <DataGridTextColumn Header="Containrar" Binding="{Binding }" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
