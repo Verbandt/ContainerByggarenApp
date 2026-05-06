@@ -1,7 +1,6 @@
 ﻿using ContainerByggaren.Views;
-using ContainerByggaren;
 
-namespace ContainerByggaren.Services
+namespace ContainerByggaren.Services.UI
 {
     public class WindowService
     {

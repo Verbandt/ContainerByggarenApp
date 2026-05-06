@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ContainerByggaren.ViewModels;
-using ContainerByggaren.Services;
+using ContainerByggaren.Services.UI;
 
 namespace ContainerByggaren
 {
@@ -149,26 +149,26 @@ namespace ContainerByggaren
 
         private void EnsureTrainColumns(int trainCount)
         {
-            //Remove all current train columns
+            // Remove all old train columns first
             for (int i = DeparturesDataGrid.Columns.Count - 1; i >= 0; i--)
             {
-                var column = DeparturesDataGrid.Columns[i];
-                if (column.Header.ToString().StartsWith("Tåg"))
+                string? header = DeparturesDataGrid.Columns[i].Header?.ToString();
+
+                if (header != null && header.StartsWith("Tåg "))
                 {
                     DeparturesDataGrid.Columns.RemoveAt(i);
                 }
+            }
 
-                //Adds new columns based on customer choice
-                for (int j = 1; j <= trainCount; j++)
+            // Add fresh train columns
+            for (int trainNumber = 1; trainNumber <= trainCount; trainNumber++)
+            {
+                DeparturesDataGrid.Columns.Add(new DataGridTextColumn
                 {
-                    var trainColumn = new DataGridTextColumn
-                    {
-                        Header = $"Tåg {j}",
-                        Binding = new Binding($"Train{j}")
-                    };
-                    DeparturesDataGrid.Columns.Add(trainColumn);
-                }
-
+                    Header = $"Tåg {trainNumber}",
+                    Binding = new Binding($"Departure{trainNumber}"),
+                    Width = 60
+                });
             }
         }
     }

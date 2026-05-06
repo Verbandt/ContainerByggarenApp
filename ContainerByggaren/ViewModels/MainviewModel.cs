@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 using ContainerByggaren.Commands;
-using ContainerByggaren.Services;
+using ContainerByggaren.Services.UI;
 
 namespace ContainerByggaren.ViewModels
 {
